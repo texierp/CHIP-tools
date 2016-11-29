@@ -17,7 +17,7 @@ while getopts "flpu:" opt; do
       AFTER_FLASHING=loop
       ;;
     u)
-      BUILDROOT_OUTPUT_DIR="${OPTARG}"
+      YOCTO_OUTPUT_DIR="${OPTARG}"
       ;;
     p)
       POCKET_CHIP=true
@@ -29,7 +29,7 @@ while getopts "flpu:" opt; do
   esac
 done
 
-echo "BUILDROOT_OUTPUT_DIR = $BUILDROOT_OUTPUT_DIR"
+echo "YOCTO_OUTPUT_DIR = $YOCTO_OUTPUT_DIR"
 
 FEL=fel
 
@@ -42,20 +42,20 @@ if [ "$1" == "erase-bb" ]; then
 	NAND_ERASE_BB=true
 fi
 
-PATH=$PATH:$BUILDROOT_OUTPUT_DIR/host/usr/bin
+PATH=$PATH:$YOCTO_OUTPUT_DIR/host/usr/bin
 TMPDIR=`mktemp -d -t chipflashXXXXXX`
-PADDED_SPL="${BUILDROOT_OUTPUT_DIR}/images/sunxi-spl-with-ecc.bin"
+PADDED_SPL="${YOCTO_OUTPUT_DIR}/images/sunxi-spl-with-ecc.bin"
 PADDED_SPL_SIZE=0
 UBOOT_SCRIPT="$TMPDIR/uboot.scr"
 UBOOT_SCRIPT_MEM_ADDR=0x43100000
 UBOOT_SCRIPT_SRC="$TMPDIR/uboot.cmds"
-SPL="$BUILDROOT_OUTPUT_DIR/images/sunxi-spl.bin"
+SPL="$YOCTO_OUTPUT_DIR/images/sunxi-spl.bin"
 SPL_MEM_ADDR=0x43000000
-UBOOT="$BUILDROOT_OUTPUT_DIR/images/u-boot-dtb.bin"
+UBOOT="$YOCTO_OUTPUT_DIR/images/u-boot-dtb.bin"
 PADDED_UBOOT="$TMPDIR/padded-uboot"
 PADDED_UBOOT_SIZE=0x400000
 UBOOT_MEM_ADDR=0x4a000000
-UBI="$BUILDROOT_OUTPUT_DIR/images/rootfs.ubi"
+UBI="$YOCTO_OUTPUT_DIR/images/rootfs.ubi"
 SPARSE_UBI="${TMPDIR}/rootfs.ubi.sparse"
 UBI_MEM_ADDR=0x4b000000
 
