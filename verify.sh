@@ -89,13 +89,13 @@ def main():
 
   print "login...",
   sys.stdout.flush()
-  answer_prompt(sio,'.*login:','chip',True)
+  answer_prompt(sio,'.*login:','root',True)
   print "OK\npassword...",
   sys.stdout.flush()
-  answer_prompt(sio,'.*Password:','chip',False)
+  answer_prompt(sio,'.*Password:','ingesup',False)
   print "OK\npoweroff...",
   sys.stdout.flush()
-  answer_prompt(sio,'.*[\$#]','sudo poweroff')
+  answer_prompt(sio,'.*[\$#]','halt')
   answer_prompt(sio,'.*:','chip')
   time.sleep(2)
   print "OK\n",
